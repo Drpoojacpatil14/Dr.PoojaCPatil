@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Pooja Chandrakant Patil – BHMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --deep: #1a1410;
+    --gold: #b8860b;
+    --gold-light: #d4a843;
+    --blush: #e8d5c4;
+    --warm-white: #f5f0e8;
+    --text: #2d2520;
+    --muted: #7a6e68;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ══════════════════════════════
+     HERO
+  ══════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px;
+    gap: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* decorative rings in background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,134,11,0.12);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 580px; height: 580px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,134,11,0.06);
+    pointer-events: none;
+  }
+
+  /* ── LEFT content ── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(184,134,11,0.35);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 62px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .hero-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 28px;
+    animation: expandW 1s ease 0.3s both;
+  }
+
+  .hero-summary {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 40px;
+  }
+
+  .hero-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .contact-row:hover { color: var(--gold); }
+
+  .contact-icon {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--blush);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(184,134,11,0.08);
+    transition: border-color 0.25s;
+  }
+  .contact-row:hover .contact-icon { border-color: var(--gold-light); }
+
+  /* ── RIGHT: circular photo ── */
+  .hero-photo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .photo-ring-outer {
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 2px solid rgba(184,134,11,0.22);
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px;
+    position: relative;
+  }
+
+  /* slowly rotating dashed ring */
+  .photo-ring-outer::before {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(184,134,11,0.18);
+    animation: spin 30s linear infinite;
+  }
+
+  .photo-ring-inner {
+    width: 330px; height: 330px;
+    border-radius: 50%;
+    border: 3px solid var(--gold-light);
+    overflow: hidden;
+    box-shadow:
+      0 0 0 6px rgba(184,134,11,0.08),
+      0 20px 60px rgba(184,134,11,0.15),
+      0 4px 20px rgba(0,0,0,0.07);
+  }
+
+  .photo-ring-inner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* small stat badge */
+  .photo-badge {
+    position: absolute;
+    bottom: 12px; right: 4px;
+    background: #fff;
+    border: 1px solid var(--blush);
+    box-shadow: 0 4px 16px rgba(184,134,11,0.12);
+    padding: 12px 18px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .badge-label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  /* ══════════════════════════════
+     SHARED SECTION STYLES
+  ══════════════════════════════ */
+  .section {
+    padding: 90px 80px;
+    background: var(--cream);
+  }
+
+  .section-alt { background: var(--warm-white); }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 52px;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(184,134,11,0.12);
+    line-height: 0.8;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 3.5vw, 42px);
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.1;
+  }
+
+  .section-title span { color: var(--gold); }
+
+  /* ══════════════════════════════
+     EXPERIENCE
+  ══════════════════════════════ */
+  .exp-grid { display: grid; gap: 2px; }
+
+  .exp-card {
+    background: #fff;
+    border-left: 3px solid transparent;
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0 40px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .exp-card:hover {
+    border-left-color: var(--gold);
+    box-shadow: 4px 0 20px rgba(184,134,11,0.07);
+  }
+
+  .exp-date {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 6px;
+    padding-top: 4px;
+  }
+
+  .exp-org { font-size: 12px; color: var(--muted); }
+
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--deep);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .exp-list li {
+    font-size: 13.5px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 6px; height: 1px;
+    background: var(--gold);
+  }
+
+  /* ══════════════════════════════
+     EDUCATION
+  ══════════════════════════════ */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .edu-card {
+    background: #fff;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .edu-card:hover::before { opacity: 1; }
+  .edu-card:hover { transform: translateY(-4px); }
+
+  .edu-icon { font-size: 28px; margin-bottom: 18px; }
+
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--deep);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .edu-inst {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .edu-highlights { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .edu-highlights li {
+    font-size: 12.5px;
+    color: var(--muted);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .edu-highlights li::before {
+    content: '◆';
+    position: absolute; left: 0; top: 4px;
+    font-size: 6px;
+    color: var(--gold);
+  }
+
+  /* ══════════════════════════════
+     PUBLICATION
+  ══════════════════════════════ */
+  .pub-card {
+    background: #fff;
+    border: 1px solid var(--blush);
+    padding: 56px 60px;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pub-card::before {
+    content: '"';
+    position: absolute;
+    right: 240px; top: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px;
+    color: rgba(184,134,11,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pub-journal {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--deep);
+    line-height: 1.45;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .pub-highlights { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .pub-highlights li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .pub-highlights li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--gold);
+  }
+
+  .pub-badge {
+    text-align: center;
+    border: 1px solid var(--blush);
+    padding: 36px 24px;
+    border-radius: 4px;
+    background: var(--warm-white);
+  }
+
+  .pub-badge-icon { font-size: 36px; margin-bottom: 14px; }
+
+  .pub-badge-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .pub-badge-year {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 10px;
+  }
+
+  /* ══════════════════════════════
+     ACHIEVEMENTS
+  ══════════════════════════════ */
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .ach-card {
+    background: #fff;
+    padding: 40px 32px;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .ach-card:hover {
+    border-bottom-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .ach-icon { font-size: 34px; margin-bottom: 14px; }
+
+  .ach-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .ach-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ach-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ══════════════════════════════
+     SKILLS
+  ══════════════════════════════ */
+  .skills-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .skill-group-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .skill-tag {
+    background: #fff;
+    border: 1px solid var(--blush);
+    padding: 8px 18px;
+    font-size: 12.5px;
+    color: var(--text);
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .skill-tag:hover {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+  }
+
+  .lang-list { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+
+  .lang-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .lang-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .objective-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    background: var(--deep);
+    padding: 56px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 80px; right: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .footer-name em { color: var(--gold-light); font-style: italic; }
+
+  .footer-tagline {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+
+  .footer-links { display: flex; gap: 24px; }
+
+  .footer-link {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-link:hover { color: var(--gold-light); }
+
+  /* ══════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes expandW {
+    from { width: 0; opacity: 0; }
+    to   { width: 60px; opacity: 1; }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 960px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 60px 32px;
+      gap: 48px;
+      text-align: center;
+    }
+    .hero-content { align-items: center; }
+    .hero-tag { margin: 0 auto 28px; }
+    .hero-divider { margin: 0 auto 28px; }
+    .hero-summary { max-width: 100%; }
+    .hero::before, .hero::after { display: none; }
+    .hero-contacts { align-items: center; }
+    .photo-ring-outer { width: 280px; height: 280px; }
+    .photo-ring-inner { width: 242px; height: 242px; }
+    .section { padding: 60px 32px; }
+    .exp-card { grid-template-columns: 1fr; gap: 8px; }
+    .edu-grid, .ach-grid { grid-template-columns: 1fr; }
+    .skills-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .pub-card { grid-template-columns: 1fr; gap: 32px; }
+    footer { flex-direction: column; gap: 24px; padding: 48px 32px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    footer::before { left: 32px; right: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════ HERO ════════════════════════════ -->
+<section class="hero">
+
+  <!-- LEFT: text content -->
+  <div class="hero-content">
+    <span class="hero-tag">Medical Professional · Nashik, Maharashtra</span>
+
+    <h1 class="hero-name">
+      Dr. Pooja<br>
+      <em>Chandrakant</em><br>
+      Patil
+    </h1>
+
+    <p class="hero-subtitle">BHMS · Medical Officer · Medical Educator</p>
+    <div class="hero-divider"></div>
+
+    <p class="hero-summary">
+      Dedicated and academically accomplished BHMS doctor with strong clinical expertise,
+      a deep passion for teaching, and a commitment to compassionate patient care.
+      Ranked in the Top 5 throughout graduation — secured 2nd Rank in Final Year.
+    </p>
+
+    <div class="hero-contacts">
+      <a class="contact-row" href="tel:+917249164297">
+        <span class="contact-icon">📞</span>
+        +91 72491 64297
+      </a>
+      <a class="contact-row" href="mailto:pooju1407@gmail.com">
+        <span class="contact-icon">✉</span>
+        pooju1407@gmail.com
+      </a>
+      <span class="contact-row">
+        <span class="contact-icon">📍</span>
+        Nashik, Maharashtra, India
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT: circular photo -->
+  <div class="hero-photo-wrap">
+    <div class="photo-ring-outer">
+      <div class="photo-ring-inner">
+        <img src="pooja.jpg"
+     alt="Dr. Pooja Chandrakant Patil">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════ EXPERIENCE ════════════════════════════ -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Professional <span>Experience</span></h2>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div>
+        <p class="exp-date">2025 – Present</p>
+        <p class="exp-org">DHMC Hospital</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Medical Officer</h3>
+        <ul class="exp-list">
+          <li>Conducting patient consultations and clinical assessments</li>
+          <li>Managing OPD patients and treatment planning</li>
+          <li>Providing patient counseling and follow-up care</li>
+          <li>Assisting in community healthcare and medical camp activities</li>
+          <li>Maintaining proper clinical documentation and case management</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <p class="exp-date">2025 – Present</p>
+        <p class="exp-org">DHMC Nashik</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Medical Educator / Teaching Faculty</h3>
+        <ul class="exp-list">
+          <li>Teaching medical students in academic and clinical subjects</li>
+          <li>Explaining complex medical concepts in a simplified, effective manner</li>
+          <li>Conducting academic discussions, practical guidance, and doubt-solving sessions</li>
+          <li>Mentoring students through strong communication and presentation skills</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <p class="exp-date">2024 – 2025</p>
+        <p class="exp-org">Myco PHC Nashik</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Clinical Rotational Internship</h3>
+        <ul class="exp-list">
+          <li>Assisted in patient examination and comprehensive case taking</li>
+          <li>Worked in OPD and community healthcare activities</li>
+          <li>Participated in patient counseling and treatment support</li>
+          <li>Gained exposure to clinical diagnosis and patient management</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <p class="exp-date">Prior Role</p>
+        <p class="exp-org">Sukhakarta Hospital Nashik</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Resident Medical Officer (RMO)</h3>
+        <ul class="exp-list">
+          <li>Managed routine patient care and emergency support</li>
+          <li>Assisted senior doctors in treatment procedures</li>
+          <li>Monitored patient recovery and follow-up care</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ EDUCATION ════════════════════════════ -->
+<section class="section section-alt">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Academic <span>Education</span></h2>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-icon">🎓</div>
+      <h3 class="edu-degree">Bachelor of Homeopathic Medicine &amp; Surgery (BHMS)</h3>
+      <p class="edu-inst">DHMC Nashik</p>
+      <ul class="edu-highlights">
+        <li>Ranked among Top 5 students throughout BHMS course</li>
+        <li>Secured 2nd Rank in Final Year</li>
+        <li>Active in clinical and academic excellence</li>
+      </ul>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-icon">📚</div>
+      <h3 class="edu-degree">Higher Secondary (12th Science – PCB)</h3>
+      <p class="edu-inst">Maharashtra Board</p>
+      <ul class="edu-highlights">
+        <li>Percentage: 78%</li>
+        <li>Biology Score: 90 Marks</li>
+        <li>Prepared rigorously for NEET examination</li>
+      </ul>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-icon">🏆</div>
+      <h3 class="edu-degree">Secondary Education (10th Standard)</h3>
+      <p class="edu-inst">Maharashtra Board</p>
+      <ul class="edu-highlights">
+        <li>Percentage: 92.80%</li>
+        <li>Science Score: 98 Marks</li>
+        <li>Multiple academic trophies and recognitions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ PUBLICATION ════════════════════════════ -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Research <span>Publication</span></h2>
+  </div>
+
+  <div class="pub-card reveal">
+    <div>
+      <p class="pub-journal">IJHSSM · Volume 5, Issue 2 · March–April 2025</p>
+      <h3 class="pub-title">
+        "To Assess the Role of Homoeopathic Medicine in Management of Migraine in Patients Aged 18–40 Years: A Randomized Control Trial"
+      </h3>
+      <ul class="pub-highlights">
+        <li>Conducted randomized controlled clinical study on migraine management</li>
+        <li>Comparative analysis of Homoeopathic and Allopathic treatment outcomes</li>
+        <li>Demonstrated significant improvement through individualized Homoeopathic treatment</li>
+      </ul>
+    </div>
+    <div class="pub-badge">
+      <div class="pub-badge-icon">📄</div>
+      <p class="pub-badge-text">International Journal of Humanities Social Science and Management</p>
+      <p class="pub-badge-year">Published 2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ACHIEVEMENTS ════════════════════════════ -->
+<section class="section section-alt">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Achievements &amp; <span>Recognitions</span></h2>
+  </div>
+
+  <div class="ach-grid">
+    <div class="ach-card reveal">
+      <div class="ach-icon">🏆</div>
+      <div class="ach-num">12+</div>
+      <div class="ach-label">School Trophies</div>
+      <p class="ach-desc">Earned 12–13 trophies during school years for outstanding academic performance</p>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🎖</div>
+      <div class="ach-num">3</div>
+      <div class="ach-label">Debate Medals</div>
+      <p class="ach-desc">Selected for Beacon Foundation Debate for 2 consecutive years — 2 medals in first, 1 in second</p>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">⭐</div>
+      <div class="ach-num">Top 5</div>
+      <div class="ach-label">BHMS Rank</div>
+      <p class="ach-desc">Ranked among Top 5 throughout BHMS graduation; secured 2nd Rank in Final Year</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ SKILLS ════════════════════════════ -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Skills &amp; <span>Languages</span></h2>
+  </div>
+
+  <div class="skills-wrapper">
+    <div class="reveal">
+      <p class="skill-group-title">Clinical &amp; Professional Skills</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Clinical Diagnosis</span>
+        <span class="skill-tag">Patient Evaluation</span>
+        <span class="skill-tag">Case Taking</span>
+        <span class="skill-tag">Patient Counseling</span>
+        <span class="skill-tag">Medical Teaching</span>
+        <span class="skill-tag">OPD Management</span>
+        <span class="skill-tag">Clinical Documentation</span>
+        <span class="skill-tag">Community Healthcare</span>
+        <span class="skill-tag">Medical Camp Coordination</span>
+        <span class="skill-tag">Academic Mentoring</span>
+        <span class="skill-tag">Public Speaking</span>
+        <span class="skill-tag">Leadership</span>
+        <span class="skill-tag">Team Collaboration</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="skill-group-title">Languages Known</p>
+      <div class="lang-list">
+        <span class="lang-pill"><span class="lang-dot"></span>English</span>
+        <span class="lang-pill"><span class="lang-dot"></span>Hindi</span>
+        <span class="lang-pill"><span class="lang-dot"></span>Marathi</span>
+      </div>
+
+      <p class="skill-group-title">Career Objective</p>
+      <p class="objective-text">
+        To become a highly respected Biology Professor and medical educator while continuing to contribute to patient care, clinical excellence, and academic advancement through effective teaching, communication, and continuous learning.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <div>
+    <p class="footer-name">Dr. Pooja <em>Chandrakant Patil</em></p>
+    <p class="footer-tagline">BHMS · Medical Officer · Nashik, Maharashtra</p>
+  </div>
+  <div class="footer-links">
+    <a class="footer-link" href="tel:+917249164297">📞 Call</a>
+    <a class="footer-link" href="mailto:pooju1407@gmail.com">✉ Email</a>
+    <a class="footer-link" href="#">📍 Nashik, MH</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
